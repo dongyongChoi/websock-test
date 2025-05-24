@@ -1,4 +1,4 @@
-package io.github.cni274.websockettest.websocket;
+package io.github.cni274.websockettest.websocket.handler;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;

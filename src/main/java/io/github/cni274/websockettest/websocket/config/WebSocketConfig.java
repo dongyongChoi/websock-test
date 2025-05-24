@@ -1,5 +1,7 @@
-package io.github.cni274.websockettest.websocket;
+package io.github.cni274.websockettest.websocket.config;
 
+import io.github.cni274.websockettest.websocket.handler.RoomWebSocketHandler;
+import io.github.cni274.websockettest.websocket.handler.SimpleWebSocketHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.socket.config.annotation.EnableWebSocket;

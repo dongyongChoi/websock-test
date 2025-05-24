@@ -1,4 +1,4 @@
-package io.github.cni274.websockettest.websocket;
+package io.github.cni274.websockettest.websocket.handler;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.TextMessage;
