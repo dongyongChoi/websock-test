@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Room Chat</title>
+</head>
+<body>
+<input id="room" placeholder="Room ID" />
+<input id="sender" placeholder="Your Name" />
+<input id="msg" placeholder="Message" />
+<button onclick="send()">Send</button>
+<ul id="chat"></ul>
+
+<script>
+  const socket = new WebSocket("/ws/chat");
+
+  socket.onmessage = function(event) {
+    const data = JSON.parse(event.data);
+    const li = document.createElement("li");
+    li.innerText = `${data.sender}: ${data.message}`;
+    document.getElementById("chat").appendChild(li);
+  };
+
+  function send() {
+    const roomId = document.getElementById("room").value;
+    const sender = document.getElementById("sender").value;
+    const message = document.getElementById("msg").value;
+
+    socket.send(JSON.stringify({
+      roomId: roomId,
+      sender: sender,
+      message: message
+    }));
+  }
+</script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package io.github.cni274.websockettest.websocket.config;
 
+import io.github.cni274.websockettest.websocket.handler.ChatWebSocketHandler;
 import io.github.cni274.websockettest.websocket.handler.RoomWebSocketHandler;
 import io.github.cni274.websockettest.websocket.handler.SimpleWebSocketHandler;
 import lombok.RequiredArgsConstructor;
@@ -16,10 +17,12 @@ public class WebSocketConfig implements WebSocketConfigurer {
 
     private final SimpleWebSocketHandler simpleWebSocketHandler;
     private final RoomWebSocketHandler roomWebSocketHandler;
+    private final ChatWebSocketHandler chatWebSocketHandler;
 
     @Override
     public void registerWebSocketHandlers(WebSocketHandlerRegistry registry) {
 //        registry.addHandler(simpleWebSocketHandler, "/ws-chat").setAllowedOrigins("*");
         registry.addHandler(roomWebSocketHandler, "/ws-chat").setAllowedOrigins("*");
+        registry.addHandler(chatWebSocketHandler, "/ws/chat").setAllowedOrigins("*");
     }
 }
