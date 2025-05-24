@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Raw WebSocket Chat</title>
+</head>
+<body>
+<h2>Raw WebSocket Chat - Room</h2>
+<input id="roomId" placeholder="roomId" />
+<button onclick="connectRoom()">방입장</button>
+<input id="msg" placeholder="Message" />
+<button onclick="send()">Send</button>
+<ul id="chat"></ul>
+
+<script>
+    let ws;
+
+    function connectRoom() {
+        let roomId = document.getElementById('roomId').value;
+
+        if (!roomId) {
+            alert('필수 입력입니다.');
+            return;
+        }
+
+        ws = new WebSocket("/ws-chat?roomId=" + roomId);
+
+        ws.onmessage = (event) => {
+            const li = document.createElement("li");
+            li.textContent = event.data;
+            document.getElementById("chat").appendChild(li);
+        };
+    }
+
+    function send() {
+        const msg = document.getElementById("msg").value;
+        ws.send(msg);
+    }
+</script>
+</body>
+</html>
